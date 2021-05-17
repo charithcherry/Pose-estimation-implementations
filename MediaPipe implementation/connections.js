@@ -20,6 +20,7 @@ function calculate_angle(x,y,z)
   {
     angle=360-angle;
   }
+
   return angle;
 }
 
@@ -39,14 +40,26 @@ function onResults(results) {
   drawLandmarks(canvasCtx, results.poseLandmarks,
     { color: '#FF0000', lineWidth: 2 });
   canvasCtx.font = "20px serif"
-  canvasCtx.fillStyle = "#00FF00";
+  canvasCtx.fillStyle = "#0000FF";
   var landmarks = results.poseLandmarks;
-  var shoulder=[landmarks[POSE_LANDMARKS.LEFT_SHOULDER].x,landmarks[POSE_LANDMARKS.LEFT_SHOULDER].y]
-  var elbow=[landmarks[POSE_LANDMARKS.LEFT_ELBOW].x,landmarks[POSE_LANDMARKS.LEFT_ELBOW].y]
-  var wrist=[landmarks[POSE_LANDMARKS.LEFT_WRIST].x,landmarks[POSE_LANDMARKS.LEFT_WRIST].y]
 
-  var result=Math.round(calculate_angle(shoulder,elbow,wrist))
-  canvasCtx.fillText("angle between SEW"+result, 10, 30)
+
+  var lshoulder=[landmarks[POSE_LANDMARKS.LEFT_SHOULDER].x,landmarks[POSE_LANDMARKS.LEFT_SHOULDER].y]
+  var lelbow=[landmarks[POSE_LANDMARKS.LEFT_ELBOW].x,landmarks[POSE_LANDMARKS.LEFT_ELBOW].y]
+  var lwrist=[landmarks[POSE_LANDMARKS.LEFT_WRIST].x,landmarks[POSE_LANDMARKS.LEFT_WRIST].y]
+
+
+  var rshoulder=[landmarks[POSE_LANDMARKS.RIGHT_SHOULDER].x,landmarks[POSE_LANDMARKS.RIGHT_SHOULDER].y]
+  var relbow=[landmarks[POSE_LANDMARKS.RIGHT_ELBOW].x,landmarks[POSE_LANDMARKS.RIGHT_ELBOW].y]
+  var rwrist=[landmarks[POSE_LANDMARKS.RIGHT_WRIST].x,landmarks[POSE_LANDMARKS.RIGHT_WRIST].y]
+
+
+  var lSEW=Math.abs(Math.round(calculate_angle(lshoulder,lelbow,lwrist)))
+  var rSEW=Math.abs(Math.round(calculate_angle(rshoulder,relbow,rwrist)))
+
+  canvasCtx.fillText("lSEW"+lSEW, 10, 30)
+  canvasCtx.fillText("rSEW"+rSEW, 10, 65)
+
 
   //console.log(result)
   canvasCtx.restore();
