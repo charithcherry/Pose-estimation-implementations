@@ -39,29 +39,51 @@ function onResults(results) {
     { color: '#00FF00', lineWidth: 4 });
   drawLandmarks(canvasCtx, results.poseLandmarks,
     { color: '#FF0000', lineWidth: 2 });
-  canvasCtx.font = "20px serif"
+  canvasCtx.font = "15px serif"
   canvasCtx.fillStyle = "#0000FF";
   var landmarks = results.poseLandmarks;
 
 
+  /**LEFT SIDE OF THE BODY */
   var lshoulder=[landmarks[POSE_LANDMARKS.LEFT_SHOULDER].x,landmarks[POSE_LANDMARKS.LEFT_SHOULDER].y]
   var lelbow=[landmarks[POSE_LANDMARKS.LEFT_ELBOW].x,landmarks[POSE_LANDMARKS.LEFT_ELBOW].y]
   var lwrist=[landmarks[POSE_LANDMARKS.LEFT_WRIST].x,landmarks[POSE_LANDMARKS.LEFT_WRIST].y]
+  var lhip=[landmarks[POSE_LANDMARKS.LEFT_HIP].x,landmarks[POSE_LANDMARKS.LEFT_HIP].y]
+  var lknee=[landmarks[POSE_LANDMARKS.LEFT_KNEE].x,landmarks[POSE_LANDMARKS.LEFT_KNEE].y]
+  var lankle=[landmarks[POSE_LANDMARKS.LEFT_ANKLE].x,landmarks[POSE_LANDMARKS.LEFT_ANKLE].y]
 
-
+  /**RIGHT SIDE OF THE BODY */
   var rshoulder=[landmarks[POSE_LANDMARKS.RIGHT_SHOULDER].x,landmarks[POSE_LANDMARKS.RIGHT_SHOULDER].y]
   var relbow=[landmarks[POSE_LANDMARKS.RIGHT_ELBOW].x,landmarks[POSE_LANDMARKS.RIGHT_ELBOW].y]
   var rwrist=[landmarks[POSE_LANDMARKS.RIGHT_WRIST].x,landmarks[POSE_LANDMARKS.RIGHT_WRIST].y]
+  var rhip=[landmarks[POSE_LANDMARKS.RIGHT_HIP].x,landmarks[POSE_LANDMARKS.RIGHT_HIP].y]
+  var rknee=[landmarks[POSE_LANDMARKS.RIGHT_KNEE].x,landmarks[POSE_LANDMARKS.RIGHT_KNEE].y]
+  var rankle=[landmarks[POSE_LANDMARKS.RIGHT_ANKLE].x,landmarks[POSE_LANDMARKS.RIGHT_ANKLE].y]
 
 
+  /** ANGLES CALCULATION */
   var lSEW=Math.abs(Math.round(calculate_angle(lshoulder,lelbow,lwrist)))
+  var lESH=Math.abs(Math.round(calculate_angle(lelbow,lshoulder,lhip)))
+  var lSHK=Math.abs(Math.round(calculate_angle(lshoulder,lhip,lknee)))
+  var lHKA=Math.abs(Math.round(calculate_angle(lhip,lknee,lankle)))
   var rSEW=Math.abs(Math.round(calculate_angle(rshoulder,relbow,rwrist)))
+  var rESH=Math.abs(Math.round(calculate_angle(relbow,rshoulder,rhip)))
+  var rSHK=Math.abs(Math.round(calculate_angle(rshoulder,rhip,rknee)))
+  var rHKA=Math.abs(Math.round(calculate_angle(rhip,rknee,rankle)))
+
+
 
   canvasCtx.fillText("lSEW"+lSEW, 10, 30)
-  canvasCtx.fillText("rSEW"+rSEW, 10, 65)
+  canvasCtx.fillText("rSEW"+rSEW, 10, 50)
+  canvasCtx.fillText("lESH"+lESH, 10, 70)
+  canvasCtx.fillText("rESH"+rESH, 10, 90)
+  canvasCtx.fillText("lSHK"+lSHK, 10, 110)
+  canvasCtx.fillText("rSHK"+rSHK, 10, 130)
+  canvasCtx.fillText("lHKA"+lHKA, 10, 150)
+  canvasCtx.fillText("rHKA"+rHKA, 10, 170)
 
 
-  //console.log(result)
+  console.log(POSE_LANDMARKS[16])
   canvasCtx.restore();
 }
 
