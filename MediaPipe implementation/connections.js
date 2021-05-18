@@ -84,13 +84,13 @@ function onResults(results) {
   
   /**CUSTOM KEYPOINTS ANGLE */
   var rNNS=Math.abs(Math.round(calculate_angle(nose,sc,rshoulder))) //NOSE NECK SHOULDER RIGHT
-  var lNHS=Math.abs(Math.round(calculate_angle(nose,sc,lshoulder))) //NOSE NECK SHOULDER LEFT
+  var lNNS=Math.abs(Math.round(calculate_angle(nose,sc,lshoulder))) //NOSE NECK SHOULDER LEFT
    
 
   var rNPH=Math.abs(Math.round(calculate_angle(sc,hc,rhip))) //NECK PELVIC HIP RIGHT
   var lNPH=Math.abs(Math.round(calculate_angle(sc,hc,lhip))) //NECK PELVIC HIP LEFT
 
-  var lNNP=Math.abs(Math.round(calculate_angle(nose,sc,hc))) //NOSE NECK PELVIC
+  var NNP=Math.abs(Math.round(calculate_angle(nose,sc,hc))) //NOSE NECK PELVIC
 
 
   
@@ -103,6 +103,12 @@ function onResults(results) {
   canvasCtx.fillText("rSHK"+rSHK, 10, 130)
   canvasCtx.fillText("lHKA"+lHKA, 10, 150)
   canvasCtx.fillText("rHKA"+rHKA, 10, 170)
+  canvasCtx.fillText("lNNS"+lNNS, 10, 190)
+  canvasCtx.fillText("rNNS"+rNNS, 10, 210)
+  canvasCtx.fillText("lNPH"+lNPH, 10, 230)
+  canvasCtx.fillText("rNPH"+rNPH, 10, 250)
+  canvasCtx.fillText("NNP"+NNP, 10, 270)
+
   
   /** BACKBONE */
   canvasCtx.beginPath();
