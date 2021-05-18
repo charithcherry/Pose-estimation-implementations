@@ -60,6 +60,12 @@ function onResults(results) {
   var rknee=[landmarks[POSE_LANDMARKS.RIGHT_KNEE].x,landmarks[POSE_LANDMARKS.RIGHT_KNEE].y]
   var rankle=[landmarks[POSE_LANDMARKS.RIGHT_ANKLE].x,landmarks[POSE_LANDMARKS.RIGHT_ANKLE].y]
 
+
+  /** NOSE */
+  var nose=[landmarks[POSE_LANDMARKS.NOSE].x,landmarks[POSE_LANDMARKS.NOSE].y]
+
+
+
   /**CUSTOM KEYPOINTS  HIP CENETER AND SHOULDER CENTER*/
   var hc=[(rhip[0]+lhip[0])/2,(rhip[1]+lhip[1])/2]
   var sc=[(rshoulder[0]+lshoulder[0])/2,(rshoulder[1]+lshoulder[1])/2]
@@ -75,8 +81,19 @@ function onResults(results) {
   var rESH=Math.abs(Math.round(calculate_angle(relbow,rshoulder,rhip)))
   var rSHK=Math.abs(Math.round(calculate_angle(rshoulder,rhip,rknee)))
   var rHKA=Math.abs(Math.round(calculate_angle(rhip,rknee,rankle)))
+  
+  /**CUSTOM KEYPOINTS ANGLE */
+  var rNNS=Math.abs(Math.round(calculate_angle(nose,sc,rshoulder))) //NOSE NECK SHOULDER RIGHT
+  var lNHS=Math.abs(Math.round(calculate_angle(nose,sc,lshoulder))) //NOSE NECK SHOULDER LEFT
+   
+
+  var rNPH=Math.abs(Math.round(calculate_angle(sc,hc,rhip))) //NECK PELVIC HIP RIGHT
+  var lNPH=Math.abs(Math.round(calculate_angle(sc,hc,lhip))) //NECK PELVIC HIP LEFT
+
+  var lNNP=Math.abs(Math.round(calculate_angle(nose,sc,hc))) //NOSE NECK PELVIC
 
 
+  
 
   canvasCtx.fillText("lSEW"+lSEW, 10, 30)
   canvasCtx.fillText("rSEW"+rSEW, 10, 50)
@@ -86,9 +103,25 @@ function onResults(results) {
   canvasCtx.fillText("rSHK"+rSHK, 10, 130)
   canvasCtx.fillText("lHKA"+lHKA, 10, 150)
   canvasCtx.fillText("rHKA"+rHKA, 10, 170)
+  
+  /** BACKBONE */
+  canvasCtx.beginPath();
+  canvasCtx.moveTo(sc[0]*400,sc[1]*400);
+  canvasCtx.lineTo(hc[0]*400,hc[1]*400); 
+  canvasCtx.strokeStyle = '#ff0000';
+  canvasCtx.lineWidth = 5;
+  canvasCtx.stroke();
 
 
-  console.log(POSE_LANDMARKS[16])
+  /** NOSE TO NECK */
+  canvasCtx.beginPath();
+  canvasCtx.moveTo(nose[0]*400,nose[1]*400);
+  canvasCtx.lineTo(sc[0]*400,sc[1]*400); 
+  canvasCtx.strokeStyle = '#ff0000';
+  canvasCtx.lineWidth = 5;
+  canvasCtx.stroke();
+
+  console.log(sc)
   canvasCtx.restore();
 }
 
