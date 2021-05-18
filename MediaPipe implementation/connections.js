@@ -60,6 +60,11 @@ function onResults(results) {
   var rknee=[landmarks[POSE_LANDMARKS.RIGHT_KNEE].x,landmarks[POSE_LANDMARKS.RIGHT_KNEE].y]
   var rankle=[landmarks[POSE_LANDMARKS.RIGHT_ANKLE].x,landmarks[POSE_LANDMARKS.RIGHT_ANKLE].y]
 
+  /**CUSTOM KEYPOINTS  HIP CENETER AND SHOULDER CENTER*/
+  var hc=[(rhip[0]+lhip[0])/2,(rhip[1]+lhip[1])/2]
+  var sc=[(rshoulder[0]+lshoulder[0])/2,(rshoulder[1]+lshoulder[1])/2]
+
+
 
   /** ANGLES CALCULATION */
   var lSEW=Math.abs(Math.round(calculate_angle(lshoulder,lelbow,lwrist)))
