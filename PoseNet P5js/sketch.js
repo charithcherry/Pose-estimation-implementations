@@ -9,14 +9,14 @@ function setup() {
   createCanvas(640, 480);
   video = createCapture(VIDEO);
   video.hide();
-  // Net = ml5.poseNet(video, modelLoaded);
-  const poseNet = await posenet.load({
-    architecture: 'ResNet50',
-    outputStride: 32,
-    inputResolution: { width: 257, height: 200 },
-    quantBytes: 2
-  });
-  poseNet.on('pose', gotPoses);
+  Net = ml5.poseNet(video, modelLoaded);
+  // const poseNet = await posenet.load({
+  //   architecture: 'ResNet50',
+  //   outputStride: 32,
+  //   inputResolution: { width: 257, height: 200 },
+  //   quantBytes: 2
+  // });
+  Net.on('pose', gotPoses);
   rectMode(CENTER)
   
 }

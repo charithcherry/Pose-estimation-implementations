@@ -1,3 +1,4 @@
+
 const videoElement = document.getElementsByClassName('input_video')[0];
 const canvasElement = document.getElementsByClassName('output_canvas')[0];
 const canvasCtx = canvasElement.getContext('2d');
@@ -95,19 +96,19 @@ function onResults(results) {
 
   
 
-  canvasCtx.fillText("lSEW"+lSEW, 10, 30)
-  canvasCtx.fillText("rSEW"+rSEW, 10, 50)
-  canvasCtx.fillText("lESH"+lESH, 10, 70)
-  canvasCtx.fillText("rESH"+rESH, 10, 90)
-  canvasCtx.fillText("lSHK"+lSHK, 10, 110)
-  canvasCtx.fillText("rSHK"+rSHK, 10, 130)
-  canvasCtx.fillText("lHKA"+lHKA, 10, 150)
-  canvasCtx.fillText("rHKA"+rHKA, 10, 170)
-  canvasCtx.fillText("lNNS"+lNNS, 10, 190)
-  canvasCtx.fillText("rNNS"+rNNS, 10, 210)
-  canvasCtx.fillText("lNPH"+lNPH, 10, 230)
-  canvasCtx.fillText("rNPH"+rNPH, 10, 250)
-  canvasCtx.fillText("NNP"+NNP, 10, 270)
+  canvasCtx.fillText(lSEW, lelbow[0]*401, lelbow[1]*401)
+  canvasCtx.fillText(rSEW, relbow[0]*401,relbow[1]*401)
+  canvasCtx.fillText(lESH, lshoulder[0]*401,lshoulder[1]*401)
+  canvasCtx.fillText(rESH, rshoulder[0]*401,rshoulder[1]*401)
+  canvasCtx.fillText(lSHK, lhip[0]*401, lhip[1]*401)
+  canvasCtx.fillText(rSHK, rhip[0]*401, rhip[1]*401)
+  canvasCtx.fillText(lHKA, lknee[0]*401,lknee[1]*401)
+  canvasCtx.fillText(rHKA, rknee[0]*401,rknee[1]*401)
+  canvasCtx.fillText("lNNS"+lNNS,10,110)
+  canvasCtx.fillText("rNNS"+rNNS,10,130)
+  canvasCtx.fillText("lNPH"+lNPH, 10, 150)
+  canvasCtx.fillText("rNPH"+rNPH, 10, 170)
+  canvasCtx.fillText("NNP"+NNP, 10, 190)
 
   
   /** BACKBONE */
@@ -127,7 +128,7 @@ function onResults(results) {
   canvasCtx.lineWidth = 5;
   canvasCtx.stroke();
 
-  console.log(sc)
+  console.log(POSE_CONNECTIONS)
   canvasCtx.restore();
 }
 
